@@ -51,7 +51,7 @@
         app:showAsAction="ifRoom" />
     <item
         android:id="@+id/share"
-        android:title="@string/share" />
+        android:title="Share With Others" />
     <item
         android:id="@+id/compress"
         android:title="@string/compress" />
