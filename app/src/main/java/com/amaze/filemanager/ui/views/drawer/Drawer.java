@@ -32,6 +32,7 @@ import com.afollestad.materialdialogs.DialogAction;
 import com.afollestad.materialdialogs.MaterialDialog;
 import com.amaze.filemanager.BuildConfig;
 import com.amaze.filemanager.R;
+import com.amaze.filemanager.SampleActivity;
 import com.amaze.filemanager.adapters.data.StorageDirectoryParcelable;
 import com.amaze.filemanager.application.AppConfig;
 import com.amaze.filemanager.database.CloudHandler;
@@ -80,6 +81,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.animation.DecelerateInterpolator;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
@@ -128,6 +130,7 @@ public class Drawer implements NavigationView.OnNavigationItemSelectedListener {
   private View drawerHeaderLayout, drawerHeaderView;
   private ImageView donateImageView;
   private ImageView telegramImageView;
+  private Button btn;
   private TextView appVersion;
 
   /** Tablet is defined as 'width > 720dp' */
@@ -145,12 +148,23 @@ public class Drawer implements NavigationView.OnNavigationItemSelectedListener {
     drawerHeaderView = drawerHeaderLayout.findViewById(R.id.drawer_header);
     donateImageView = drawerHeaderLayout.findViewById(R.id.donate);
     telegramImageView = drawerHeaderLayout.findViewById(R.id.telegram);
+    btn = drawerHeaderLayout.findViewById(R.id.button);
     appVersion = drawerHeaderLayout.findViewById(R.id.app_version);
     if (BuildConfig.DEBUG) {
       appVersion.setVisibility(View.VISIBLE);
     }
     donateImageView.setOnClickListener(v -> new Billing(mainActivity));
     telegramImageView.setOnClickListener(v -> Utils.openTelegramURL(mainActivity));
+    //import com.amaze.filemanager.utils.Utils; used like up
+    btn.setOnClickListener(v->Utils.openURL("https://www.baidu.com",mainActivity));
+    //will break
+    /*btn.setOnClickListener(new View.OnClickListener() {
+      @Override
+      public void onClick(View view) {
+        Intent intent=new Intent(mainActivity.getApplicationContext(), SampleActivity.class);
+        mainActivity.startActivity(intent);
+      }
+    });*/
     initDrawerFocusItems();
     /*drawerHeaderView.setOnLongClickListener(
     v -> {
